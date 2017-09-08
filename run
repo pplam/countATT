@@ -1,3 +1,4 @@
  #!/bin/sh
 
+rm -f ./outputs/*
 node index.js $1
