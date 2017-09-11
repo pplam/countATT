@@ -2,7 +2,7 @@
 statistics att & eth
 ## Install
 ~~~
-git clone https://github.com/pplam/countATT.git .
+git clone https://github.com/pplam/countATT.git
 cd countATT
 npm install
 ~~~
