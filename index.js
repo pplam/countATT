@@ -4,14 +4,21 @@ const rp = require('request-promise')
 const abi = require('ethereumjs-abi')
 const trans = require('./inputs/trans.json')
 
-const toBlock = process.argv[2]
+let fromBlock = '4244550'
+let toBlock =  ''
+if (process.argv.length > 3) {
+  fromBlock = process.argv[2]
+  toBlock = process.argv[3]
+} else {
+  toBlock = process.argv[2]
+}
 
 const opts = {
   uri: 'https://api.etherscan.io/api',
   qs: {
     module: 'logs',
     action: 'getLogs',
-    fromBlock: '4244550',
+    fromBlock,
     toBlock,
     address: '0x887834d3b8d450b6bab109c252df3da286d73ce4',
     topic2: '0x000000000000000000000000aee129da02f62711b404bb1e1aa97650a958b821',
@@ -20,6 +27,7 @@ const opts = {
   json: true,
 }
 
+console.log(opts)
 rp(opts).then(processData).catch(console.log)
 
 function processData(rawData) {
